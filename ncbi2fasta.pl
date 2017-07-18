@@ -32,7 +32,7 @@ while(<INPUT_FILE>)
 
 	my $name1     = $seq_obj->desc();
 
-        print STDOUT ">"."$name1","\n";
+        print STDOUT ">"."$acc_no[$counter]"."_"."$name1","\n";
 
         print STDOUT $sequence1,"\n";
 
