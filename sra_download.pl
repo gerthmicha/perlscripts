@@ -41,16 +41,16 @@ else{
 		# When valid SRA accession number is provided, call wget and download library. 
 		# Definitions for folders in which fastq files are stored can be found under http://www.ebi.ac.uk/ena/browse/read-download  
 		if(length($line)==12){
-			system "wget --retry-connrefused -q -a $filename --show-progress 'ftp://ftp.sra.ebi.ac.uk/vol1/fastq/".substr($line,0,6).substr($line,9,3)."/".$line."/*'";
+			system "wget --retry-connrefused -a $filename --show-progress 'ftp://ftp.sra.ebi.ac.uk/vol1/fastq/".substr($line,0,6).substr($line,9,3)."/".$line."/*'";
 		}	
 		if(length($line)==11){
-                       	system "wget --retry-connrefused -q --show-progress 'ftp://ftp.sra.ebi.ac.uk/vol1/fastq/".substr($line,0,6)."/0".substr($line,9,2)."/".$line."/*'";
+                       	system "wget --retry-connrefused -a $filename --show-progress 'ftp://ftp.sra.ebi.ac.uk/vol1/fastq/".substr($line,0,6)."/0".substr($line,9,2)."/".$line."/*'";
 		}	
 		if(length($line)==10){
-			system "wget --retry-connrefused -q --show-progress 'ftp://ftp.sra.ebi.ac.uk/vol1/fastq/".substr($line,0,6)."/00".substr($line,9,1)."/".$line."/*'";
+			system "wget --retry-connrefused -a $filename --show-progress 'ftp://ftp.sra.ebi.ac.uk/vol1/fastq/".substr($line,0,6)."/00".substr($line,9,1)."/".$line."/*'";
 		}		
 		if(length($line)==9){
-			system "wget -a $filename --retry-connrefused -q --show-progress -R '*.listing' 'ftp://ftp.sra.ebi.ac.uk/vol1/fastq/".substr($line,0,6)."/".$line."/*'";
+			system "wget --retry-connrefused -a $filename --show-progress 'ftp://ftp.sra.ebi.ac.uk/vol1/fastq/".substr($line,0,6)."/".$line."/*'";
 		}
 		$currentlib = $count-$libcount;
 		# Print info on how many libraries were downloaded and how many remain
