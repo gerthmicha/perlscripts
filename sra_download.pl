@@ -30,6 +30,8 @@ else{
 		#count processed lines
                 $libcount++;
 		# Print date & time (here & in front of any output)
+		my($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime();
+		my $ymd = sprintf("%04d%02d%02d%02d%02d",$year+1900,$mon+1,$mday,$hour,$min);
 		printf("\n[%02d:%02d:%02d]", $hour, $min, $sec);
 		# Print current library name
 		print "\tDownloading library $line\.\n";
@@ -54,6 +56,8 @@ else{
 		}
 		$currentlib = $count-$libcount;
 		# Print info on how many libraries were downloaded and how many remain
+		my($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime();
+		my $ymd = sprintf("%04d%02d%02d%02d%02d",$year+1900,$mon+1,$mday,$hour,$min);
                 printf("\n[%02d:%02d:%02d]", $hour, $min, $sec);
                 print "\tRemaining donwloads: $currentlib of $count libraries." ;
 	

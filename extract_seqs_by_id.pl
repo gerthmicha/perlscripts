@@ -18,7 +18,7 @@ open (FASTA , '<' , $inputfasta) or die "\nThis script will extract those sequen
 open (BLAST , '<' , $wanted_ids) or die "Please provide \nA) Path to fasta file from which to extract sequences\nB) Path to file that contains all IDs to be searched for (each in a single line)\n";
 
 my $prefix = $inputfasta;
-$prefix=~s/.f.*//;
+$prefix=~s/\.fa.*//;
 my $outputfile=$prefix."_OUT.fas";
 	if(-e $outputfile){
 		print "\n$outputfile already exists! Overwrite? (Y|n) ";
