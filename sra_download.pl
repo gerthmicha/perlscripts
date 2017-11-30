@@ -9,7 +9,7 @@ my($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime();
 my $ymd = sprintf("%04d%02d%02d%02d%02d",$year+1900,$mon+1,$mday,$hour,$min);
 my $filename = $ymd."_wget.log";
 if(!defined $ARGV[0]){
-        print "This script will download fastq files from the European Nucleotide Archive database. Requires input file with a single SRA accession number per line (accession numbers are identical to NCBI's SRA accession numbers). Please note that this will access European servers, and thus probably be most efficient when used in Europe. Please also note that this script will sort the file with accession numbers, if an unsorted one was provided. \n\nUSAGE:\tperl sra_dowload.pl [sra file]\n";
+        print "This script will download fastq files from the European Nucleotide Archive database.\n\nNOTES:\t-Requires wget version 1.16 or higher (pre-installed on most unix systems, or download here: https://ftp.gnu.org/gnu/wget/)\n\t-Input file should contain only a single SRA accession number per line and no white spaces (accession numbers are identical to NCBI's SRA accession numbers)\n\t-This script will access European servers, and thus is probably most efficient when used in Europe.\n\t-The script will sort the file with accession numbers, if an unsorted one was provided. \n\nUSAGE:\tperl sra_dowload.pl [sra file]\n\n";
         }
 else{
 # Check if input files were provided, else show usage information       
