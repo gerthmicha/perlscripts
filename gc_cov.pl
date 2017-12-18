@@ -1,5 +1,6 @@
 #!/usr/bin/perl
 use Getopt::Long qw(GetOptions);
+use Term::ANSIColor qw(:constants);
 
 my $taxfile;
 my $ntaxa;
@@ -9,7 +10,7 @@ GetOptions('ntaxa=i'  => \$ntaxa,
 
 my $infile =  $ARGV[0];
 
-if(!defined $infile){die "\nThis script will draw simple GC coverage plots from SPAdes assembly files. It uses the information on kmer coverage and contig lengths given in the SPAdes assembly files. \n»Please note that the coverage therefore does not correspond to actual nucleotide coverage, but to kmer coverage as estimated by SPAdes with the largest kmer used!«\nRequires Perl module 'Statistics::R' and R packages 'ggplot2' and 'viridis'.\n\nUSAGE\tperl gc_cov.pl [OPTIONS] assembly.fasta\n\nOPTIONS\n\t--taxonomy\t(optional) path to taxonomy file that will be used to annotate the plot\n\t--ntaxa\t(optional, only in conjunction with --taxonomy) The maximum number of taxa to annotate \n\nFormat for (optional) taxonomy file:\ncontigname1\ttaxonname\ncontigname2\ttaxonname\n...\n\n"};
+unless(-e $infile){die "\nThis script will draw simple GC coverage plots from SPAdes assembly files. It uses the information on kmer coverage and contig lengths given in the SPAdes assembly files.",RED, "\nPlease note that the coverage therefore does not correspond to actual nucleotide coverage, but to kmer coverage as estimated by SPAdes with the largest kmer used in assembly!",RESET, "\nRequires Perl module 'Statistics::R' and R packages 'ggplot2' and 'viridis'.\n\nUSAGE\tperl gc_cov.pl [OPTIONS] assembly.fasta\nOPTIONS\n  --taxonomy [FILE]\tpath to taxonomy file that will be used to annotate the plot (optional)\n  --ntaxa [N]\t\tthe number of most frequently occuring taxa to annotate (optional, only in conjunction with --taxonomy)\n\nFormat for taxonomy file:\ncontigname1\ttaxonname\ncontigname2\ttaxonname\n...\n\n"};
 
 
 # Fasta-Assembly einlesen und in @seqs Array speichern
@@ -71,11 +72,11 @@ if(defined $taxfile){
 		}
 	}	
 }
-foreach my $val (values %taxonomy){ 
-	if(!defined($value)){ 
-		$value = "unknown"
+foreach my $k (keys %taxonomy){
+	if(!defined($taxonomy{$k})){
+		$taxonomy{$k} = "unknown";
 	}
-};
+}
 
 
 my %wanted;

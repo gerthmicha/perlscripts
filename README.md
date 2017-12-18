@@ -81,6 +81,23 @@ This script calculates GC values from each sequence of a given fasta file.
         USAGE: perl GC.pl input.fasta
 
 
+#### gc_cov.pl
+        This script will draw simple GC coverage plots from SPAdes assembly files. It uses the information on kmer coverage and contig lengths given in the SPAdes assembly files.
+        Please note that the coverage therefore does not correspond to actual nucleotide coverage, but to kmer coverage as estimated by SPAdes with the largest kmer used in assembly!
+        Requires Perl module 'Statistics::R' and R packages 'ggplot2' and 'viridis'.
+
+        USAGE	perl gc_cov.pl [OPTIONS] assembly.fasta
+        OPTIONS
+        --taxonomy [FILE]	path to taxonomy file that will be used to annotate the plot (optional)
+        --ntaxa [N]		the number of most frequently occuring taxa to annotate (optional, only in conjunction with --taxonomy)
+
+        Format for taxonomy file:
+        contigname1	taxonname
+        contigname2	taxonname
+        ...
+
+
+
 #### ncbi2fasta.pl
 
 This script will fetch nucleotide sequences from NCBI GenBank based on their accession numbers.
