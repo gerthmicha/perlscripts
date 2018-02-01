@@ -139,16 +139,26 @@ This script will create single fasta files out of a larger alignment based on a 
 
 #### sra_download.pl
 
-This script will download fastq files from the European Nucleotide Archive database.
+This script downloads fastq files from the European Nucleotide Archive (ENA) database.	
 
--Requires wget version 1.16 or higher (pre-installed on most unix systems, or download here: https://ftp.gnu.org/gnu/wget/)
+* Requires EITHER wget version 1.16 & up (https://ftp.gnu.org/gnu/wget/) OR ascp (https://downloads.asperasoft.com/en/downloads/50)
 
--Input file should contain only a single SRA accession number per line and no white spaces (accession numbers are identical to NCBI's SRA accession numbers)
+* To access the ENA database with ascp, you will need a private key file that is included with the ascp package. Depending on your system, you may need to tell the script where this key file can be found (default is "$HOME/.aspera/connect/etc/asperaweb_id_dsa.openssh") 
 
--This script will access European servers, and thus is probably most efficient when used in Europe.
+* If possible, using ascp is recommended, as download speeds are much higher than with wget (often up to 300-500 MB/s) 
+	
+* Input file should contain only a single SRA accession number per line and no white spaces (accession numbers are identical to NCBI's SRA accession numbers)
+	
+* This script will access European servers, and thus is probably most efficient when used in Europe.
 
--The script will sort the file with accession numbers, if an unsorted one was provided. 
+* Please refer to https://www.ebi.ac.uk/ena/browse/read-download for details on how fastq files from SRA studies are stored at ENA and can be accessed
 
-        USAGE:	perl sra_dowload.pl [sra file]
+* The script will sort the file with accession numbers, if an unsorted one was provided.
+
+        USAGE	perl sra_dowload.pl [OPTIONS] accessions.txt
+        OPTIONS
+         --ascp	Use ascp (Aspera secure copy) instead of wget to fetch the files
+         --id    	Path to Aspera private key file (defaults to ~/.aspera/connect/etc/asperaweb_id_dsa.openssh, only in conjunction with --ascp)
+
 
 

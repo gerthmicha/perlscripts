@@ -11,7 +11,7 @@ GetOptions(	'ascp'  => \$aspera,
 		
 #Check if id file path was provided by user, if not, use default path from Ubuntu installation
 if(!defined $myid){
-	$myid="~/.aspera/connect/etc/asperaweb_id_dsa.openssh";
+	$myid="\$HOME/.aspera/connect/etc/asperaweb_id_dsa.openssh";
 }
 
 # define input files
