@@ -110,8 +110,13 @@ This script turns a regular nucleotid alignment into an RY-coded alignment.
 
         USAGE: perl RY_coder.pl input.fasta
 
+#### seqlength.pl                                                 
+This script shows the length of each sequence of a given fasta file.
 
-##### singularize_seqs.pl                                                 
+        USAGE: perl seqlength.pl input.fasta
+
+
+#### singularize_seqs.pl                                                 
 This script creates single sequence files from any multi-sequence fasta file.
 
         USAGE: perl singularize_seqs.pl input.fasta

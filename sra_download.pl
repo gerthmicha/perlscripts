@@ -96,17 +96,23 @@ else{
                 	}
 		}
 	close(SRA);
+	my($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime();
+        my $ymd = sprintf("%04d%02d%02d%02d%02d",$year+1900,$mon+1,$mday,$hour,$min);
 	printf("\n[%02d:%02d:%02d]", $hour, $min, $sec);
 	print "\tDownloaded $count libraries. Performing checks.\n";
 	# Check if for every accession number in file, at least file/folder with the corresponding name. 
 	# If not, print warning. (Could use more sophisticated check?)	
 	my $missing= `ls * | cut -f1 -d'.' | cut -f1 -d'_' | sort -u | comm -13 - $srafile | sed "s/ //g"`;	
 	if($missing  ne ''){
+		my($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime();
+                my $ymd = sprintf("%04d%02d%02d%02d%02d",$year+1900,$mon+1,$mday,$hour,$min);
 		printf("\n[%02d:%02d:%02d]", $hour, $min, $sec);
 		print("\tWARNING! The follwing SRA accessions were not downloaded. Please check files!\n\n$missing\n");
 		
 	}
 	else{
+		my($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime();
+                my $ymd = sprintf("%04d%02d%02d%02d%02d",$year+1900,$mon+1,$mday,$hour,$min);
 		printf("\n[%02d:%02d:%02d]", $hour, $min, $sec);
 		print("\tAll done!\n");	
 	}	
